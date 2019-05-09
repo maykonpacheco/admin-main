@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import firebase from './firebase';
 
+import Navbar from './components/Navbar';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,12 +39,13 @@ class App extends Component {
 
   render() {
     return (
-
+      
       <div class="container">
+      <Navbar />
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              Lista de Consulta
+              Lista de Consultas
             </h3>
           </div>
           <div class="panel-body">
@@ -67,6 +71,8 @@ class App extends Component {
           </div>
         </div>
       </div>
+     
+      
     );
   }
 }

@@ -85,7 +85,7 @@ class Edit extends Component {
                 <label for="author">Valor:</label>
                 <input type="text" class="form-control" name="author" value={this.state.author} onChange={this.onChange} placeholder="valor" />
               </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-success">Salvar</button>
             </form>
           </div>
         </div>
