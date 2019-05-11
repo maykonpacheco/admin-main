@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import firebase from '../firebase';
+import firebase from '../../firebase';
 import { Link } from 'react-router-dom';
 
-class Edit extends Component {
+class especialistEdit extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       key: '',
-      title: '',
-      description: '',
+      name: '',
+      CRM: '',
       author: ''
     };
   }
 
   componentDidMount() {
-    const ref = firebase.firestore().collection('boards').doc(this.props.match.params.id);
+    const ref = firebase.firestore().collection('Especialist').doc(this.props.match.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
-        const board = doc.data();
+        const Especialist = doc.data();
         this.setState({
           key: doc.id,
-          title: board.title,
-          description: board.description,
-          author: board.author
+          Name: Especialist.name,
+          CRM: Especialist.CRM,
+          author: Especialist.author
         });
       } else {
         console.log("No such document!");
@@ -34,24 +34,24 @@ class Edit extends Component {
   onChange = (e) => {
     const state = this.state
     state[e.target.name] = e.target.value;
-    this.setState({board:state});
+    this.setState({Especialist:state});
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { title, description, author } = this.state;
+    const { name, CRM, author } = this.state;
 
-    const updateRef = firebase.firestore().collection('boards').doc(this.state.key);
+    const updateRef = firebase.firestore().collection('boardEspecialists').doc(this.state.key);
     updateRef.set({
-      title,
-      description,
+      name,
+      CRM,
       author
     }).then((docRef) => {
       this.setState({
         key: '',
-        title: '',
-        description: '',
+        name: '',
+        CRM: '',
         author: ''
       });
       this.props.history.push("/show/"+this.props.match.params.id)
@@ -67,7 +67,7 @@ class Edit extends Component {
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              Editar Consulta
+              Editar Especialista
             </h3>
           </div>
           <div class="panel-body">
@@ -78,7 +78,7 @@ class Edit extends Component {
                 <input type="text" class="form-control" name="title" value={this.state.title} onChange={this.onChange} placeholder="nome" />
               </div>
               <div class="form-group">
-                <label for="description">Descrição:</label>
+                <label for="description">CRM:</label>
                 <input type="text" class="form-control" name="description" value={this.state.description} onChange={this.onChange} placeholder="descrição" />
               </div>
               <div class="form-group">
@@ -94,4 +94,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default especialistEdit;

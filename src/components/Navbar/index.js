@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 
 class Navbar extends Component {
@@ -10,8 +12,8 @@ class Navbar extends Component {
     <div class="inner">
       <h3 class="masthead-brand">Admim</h3>
       <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link active" href="#">Consultas</a>
-        <a class="nav-link" href="#">Especialistas</a>
+        <Link class="nav-link active" to="/">Consultas</Link>
+        <Link class="nav-link active" to='/Especialist' >Especialistas</Link>
       </nav>
     </div>
   </div>
